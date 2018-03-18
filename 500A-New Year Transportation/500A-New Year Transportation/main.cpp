@@ -8,28 +8,26 @@
 
 #include <iostream>
 using namespace std;
-int N, idx, A;
 
 int main(){
+    int n, t, a, cur=1, b=1;
     
-    std::cin >> N;
-    cin >> idx;
-    int currIdx =1;
-    int b = 1;
+    cin >> n;
+    cin >> t;
     
-    while(N--){
-        cin >> A;
-        currIdx += A;
+    while(n--){
+        cin >> a;
+        cur += a;   // a를 더해주자. += 인 이유는 index + 값이므롱
         b++;
-        if(currIdx > b){
-            while(currIdx > b){
-                cin >> A;
-                b++;
+        if(cur > b){
+            while(cur > b){
+                cin >> a;   // 입력만 받고 넘어가자
+                b++;    // index 앞으로
             }
         }
-        if(currIdx >= idx) break;
+        if(cur >= t) break;
     }
-    if(currIdx == idx){
+    if(cur == t){
         cout << "YES" << endl;
     }
     else{
