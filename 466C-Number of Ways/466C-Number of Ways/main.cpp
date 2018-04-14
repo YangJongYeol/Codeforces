@@ -17,32 +17,34 @@ int main(int argc, const char * argv[]) {
     long long n;
     cin>>n;
     
-    long long a[n], indexFirst[n-2], sum=0, avg;
-    for (int i=0; i<n; i++) {
+    long long a[n], index[n], avg=0, sum1=0, sum2=0, count1=0, count2=0;
+    for (long long i=0; i<n; i++) {
         cin>>a[i];
-        
-        sum += a[i];
+        avg += a[i];
     }
     
-    if (sum%3 == 0) {
-        avg = sum/n;
+    if (avg%3 ==0) {
+        avg /= 3;
         
-        sum = 0;
-        for (int i=0; i<n-2; i++) {
-            sum += a[i];
+        memset(index, 0, n*sizeof(long long));
+        
+        for (long long i=0; i<n-2; i++) {
+            sum1 += a[i];
             
-            if (avg == 0 && sum == 0) {
-                indexFirst[i] = 1;
-            } else {
-                if (sum%avg == 0) {
-                    indexFirst[i] = 1;
-                } else {
-                    indexFirst[i] = 0;
-                }
+            if (sum1 == avg) {
+                count1++;
             }
         }
         
-        
+        for (long long i=n-1; i>=1; i--) {
+            sum2 += a[i];
+            
+            if (sum2 == avg) {
+                count2++;
+            }
+        }
     }
+    
+    cout<<count1*count2;
     return 0;
 }

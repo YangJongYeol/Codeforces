@@ -10,12 +10,22 @@
 #include <cmath>
 using namespace std;
 
+int factorial(int n) {
+    if(n == 1) return 1;
+    else return n * factorial(n - 1);
+}
+
+int combination(int m, int n) {
+    return factorial(m)/(factorial(n)*factorial(m-n));
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     ios::sync_with_stdio(false);
     
     string dreamoon, drazil;
     int dreamoonPos=0, drazilPos=0, questionCount=0;
+    double possibleCount=0.0, totalCount=0.0;
     
     cin>>dreamoon>>drazil;
     
@@ -30,11 +40,28 @@ int main(int argc, const char * argv[]) {
         else if (drazil[i] == '?') { questionCount++; }
     }
     
-    int values[(int)pow(questionCount, 2)];
-    int index = 0;
-    for (int i=0; i<questionCount; i++) {
-        
+    int sub = dreamoonPos - drazilPos;
+    cout<<fixed;
+    cout.precision(12);
+    if (abs(sub) > questionCount) {
+        cout<<0.000000000000;
+        return 0;
+    } else {
+        for (int i=0; i<=questionCount; i++) {
+            int plusCount = i;
+            int minusCount = questionCount - i;
+            
+            int count;
+            if (plusCount == 0 || plusCount == questionCount)count = 1;
+            else count = combination(questionCount, plusCount);
+            if (plusCount-minusCount == sub) {
+                possibleCount += count;
+            }
+            
+            totalCount += count;
+        }
     }
     
+    cout<<(double)possibleCount/(double)totalCount;
     return 0;
 }
