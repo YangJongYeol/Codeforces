@@ -29,20 +29,9 @@ int main(int argc, const char * argv[]) {
     sort(vc_sherlock.begin(), vc_sherlock.end());
     sort(vc_moriarty.begin(), vc_moriarty.end());
 
-    flick1 = n-1;
-    for (int i=n-1; i>=0; i--) {
-        if (vc_sherlock[i] <= vc_moriarty[flick1]) {
-            flick1--;
-        }
-    }
-    cout<<flick1+1<<"\n";
-    
     for (int i=0; i<n; i++) {
-        if (vc_sherlock[flick2] < vc_moriarty[i]) {
-            flick2++;
-        }
+        <#statements#>
     }
     
-    cout<<flick2;
     return 0;
 }
